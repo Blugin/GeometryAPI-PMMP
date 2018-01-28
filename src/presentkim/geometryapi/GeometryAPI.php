@@ -127,6 +127,6 @@ class GeometryAPI extends PluginBase{
      * @return string | null
      */
     public function getGeometryData(string $geometryName) : ?string{
-        return isset($this->geometryDatas[$geometryName]) ?? null;
+        return $this->geometryDatas[$geometryName] ?? null;
     }
 }
