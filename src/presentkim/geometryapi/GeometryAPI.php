@@ -48,8 +48,7 @@ class GeometryAPI extends PluginBase{
     }
 
     public function load() : void{
-        $dataFolder = $this->getDataFolder();
-        if (!file_exists($dataFolder)) {
+        if (!file_exists($dataFolder = $this->getDataFolder())) {
             mkdir($dataFolder, 0777, true);
         }
         if (!file_exists($jsonFolder = "{$dataFolder}json/")) {
@@ -78,8 +77,7 @@ class GeometryAPI extends PluginBase{
     }
 
     public function save() : void{
-        $dataFolder = $this->getDataFolder();
-        if (!file_exists($dataFolder)) {
+        if (!file_exists($dataFolder = $this->getDataFolder())) {
             mkdir($dataFolder, 0777, true);
         }
         if (!file_exists($jsonFolder = "{$dataFolder}json/")) {
