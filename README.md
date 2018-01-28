@@ -8,7 +8,7 @@
 [![Download](https://img.shields.io/github/downloads/PMMPPlugin/GeometryAPI/total.svg?label=Download)](https://github.com/PMMPPlugin/GeometryAPI/releases/latest)
 
 
-A plugin give virtual chest to player for PocketMine-MP
+A plugin skin data api for PocketMine-MP
 
 ## Command
 Main command : `/geometry <list | lang | reload | save>`
