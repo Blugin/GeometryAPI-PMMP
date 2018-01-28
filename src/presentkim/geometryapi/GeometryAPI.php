@@ -52,9 +52,12 @@ class GeometryAPI extends PluginBase{
         if (!file_exists($dataFolder)) {
             mkdir($dataFolder, 0777, true);
         }
+        if (!file_exists($jsonFolder = "{$dataFolder}json/")) {
+            mkdir($jsonFolder, 0777, true);
+        }
 
         $this->geometryDatas = [];
-        foreach (new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator("{$dataFolder}json/")) as $path => $fileInfo) {
+        foreach (new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($jsonFolder)) as $path => $fileInfo) {
             if (!is_dir($path) && strcasecmp(substr($path, -5), '.json') === 0) {
                 $this->geometryDatas[substr($path, 0, strlen($path) - 5)] = file_get_contents($path);
             }
@@ -79,9 +82,12 @@ class GeometryAPI extends PluginBase{
         if (!file_exists($dataFolder)) {
             mkdir($dataFolder, 0777, true);
         }
+        if (!file_exists($jsonFolder = "{$dataFolder}json/")) {
+            mkdir($jsonFolder, 0777, true);
+        }
 
         foreach ($this->geometryDatas as $geometryName => $geometryData) {
-            file_put_contents("{$dataFolder}json/{$geometryName}.json", $geometryData);
+            file_put_contents("{$jsonFolder}{$geometryName}.json", $geometryData);
         }
         $this->saveConfig();
     }
