@@ -39,3 +39,5 @@ Main command : `/geometry <list | lang | reload | save>`
 ## ChangeLog
 ### v1.0.0 [![Source](https://img.shields.io/badge/source-v1.0.0-blue.png?label=source)](https://github.com/PMMPPlugin/GeometryAPI/tree/v1.0.0) [![Release](https://img.shields.io/github/downloads/PMMPPlugin/GeometryAPI/v1.0.0/total.png?label=download&colorB=1fadad)](https://github.com/PMMPPlugin/GeometryAPI/releases/v1.0.0)
 - First release
+### v1.0.1 [![Source](https://img.shields.io/badge/source-v1.0.1-blue.png?label=source)](https://github.com/PMMPPlugin/GeometryAPI/tree/v1.0.0) [![Release](https://img.shields.io/github/downloads/PMMPPlugin/GeometryAPI/v1.0.1/total.png?label=download&colorB=1fadad)](https://github.com/PMMPPlugin/GeometryAPI/releases/v1.0.1)
+- \[Fixed\] getGeometryData() return bool
