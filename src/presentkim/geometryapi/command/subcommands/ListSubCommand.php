@@ -34,7 +34,7 @@ class ListSubCommand extends SubCommand{
           }) : 1) - 1);
         $sender->sendMessage(Plugin::$prefix . $this->translate('head', $page + 1, $max));
         for ($i = $page * 5; $i < ($page + 1) * 5 && $i < count($list); $i++) {
-            $sender->sendMessage($this->translate('item', ...$list[$i]));
+            $sender->sendMessage($this->translate('item', $list[$i]));
         }
         return true;
     }
