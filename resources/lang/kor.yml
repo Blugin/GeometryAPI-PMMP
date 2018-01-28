@@ -1,0 +1,32 @@
+---
+prefix: "[GeometryAPI] "
+
+command-generic-failure@permission : "당신은 이 명령어를 사용할 권한이 없습니다"
+
+command-geometry: "geometry"
+command-geometry@usage: "/geometry <list | lang | reload | save>"
+command-geometry@description: "GeometryAPI 메인 명령어"
+command-geometry@aliases: ["gm"]
+
+command-geometry-list: "list"
+command-geometry-list@usage: "/geometry List <페이지>"
+command-geometry-list@head: "--- 목록 (page {%0} of {%1}) ---"
+command-geometry-list@item: " - {%0} => {%1}"
+command-geometry-list@aliases: ["l"]
+
+command-geometry-lang: "lang"
+command-geometry-lang@usage: "/geometry Lang <언어명>"
+command-geometry-lang@success: "{%0}언어 파일을 불러왔습니다"
+command-geometry-lang@failure: "{%0}는 잘못된 언어명입니다"
+command-geometry-lang@aliases: ["language"]
+
+command-geometry-reload: "reload"
+command-geometry-reload@usage: "/geometry Reload"
+command-geometry-reload@success: "모든 데이터를 불러왔습니다"
+command-geometry-reload@aliases: ["rl"]
+
+command-geometry-save: "save"
+command-geometry-save@usage: "/geometry Save"
+command-geometry-save@success: "모든 데이터를 저장했습니다"
+command-geometry-save@aliases: ["sv"]
+...
