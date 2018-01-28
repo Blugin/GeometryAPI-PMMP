@@ -58,7 +58,7 @@ class GeometryAPI extends PluginBase{
         $this->geometryDatas = [];
         foreach (new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($jsonFolder)) as $path => $fileInfo) {
             if (!is_dir($path) && strcasecmp(substr($path, -5), '.json') === 0) {
-                $this->geometryDatas[substr($path, 0, strlen($path) - 5)] = file_get_contents($path);
+                $this->geometryDatas[substr($fileName = $fileInfo->getFileName(), 0, strlen($fileName) - 5)] = file_get_contents($path);
             }
         }
 
