@@ -18,13 +18,13 @@ class PlayerEventListener implements Listener{
     }
 
     /** @param PlayerChangeSkinEvent $event */
-    public function onPlayerChangeSkinEvent(PlayerChangeSkinEvent $event){
+    public function onPlayerChangeSkinEvent(PlayerChangeSkinEvent $event) : void{
         $skin = $event->getNewSkin();
         $this->owner->addGeometryData($skin->getGeometryName(), $skin->getGeometryData());
     }
 
     /** @param PlayerJoinEvent $event */
-    public function onPlayerJoinEvent(PlayerJoinEvent $event){
+    public function onPlayerJoinEvent(PlayerJoinEvent $event) : void{
         $skin = $event->getPlayer()->getSkin();
         $this->owner->addGeometryData($skin->getGeometryName(), $skin->getGeometryData());
     }

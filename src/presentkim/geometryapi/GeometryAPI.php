@@ -115,7 +115,7 @@ class GeometryAPI extends PluginBase{
      * @param string $geometryName
      * @param string $geometryData
      */
-    public function addGeometryData(string $geometryName, string $geometryData){
+    public function addGeometryData(string $geometryName, string $geometryData) : void{
         if (!isset($this->geometryDatas[$geometryName])) {
             $this->geometryDatas[$geometryName] = $geometryData;
         }
