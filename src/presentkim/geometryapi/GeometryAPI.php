@@ -120,4 +120,13 @@ class GeometryAPI extends PluginBase{
             $this->geometryDatas[$geometryName] = $geometryData;
         }
     }
+
+    /**
+     * @param string $geometryName
+     *
+     * @return string | null
+     */
+    public function getGeometryData(string $geometryName) : ?string{
+        return isset($this->geometryDatas[$geometryName]) ?? null;
+    }
 }
