@@ -3,7 +3,6 @@
 namespace presentkim\geometryapi\command;
 
 use pocketmine\command\CommandSender;
-
 use presentkim\geometryapi\GeometryAPI as Plugin;
 use presentkim\geometryapi\util\Translation;
 

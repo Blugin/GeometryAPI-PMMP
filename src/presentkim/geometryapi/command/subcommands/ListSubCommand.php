@@ -2,10 +2,7 @@
 
 namespace presentkim\geometryapi\command\subcommands;
 
-use function array_keys;
-use pocketmine\Server;
 use pocketmine\command\CommandSender;
-
 use presentkim\geometryapi\GeometryAPI as Plugin;
 use presentkim\geometryapi\command\{
   SubCommand, PoolCommand,

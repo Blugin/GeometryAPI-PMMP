@@ -3,7 +3,6 @@
 namespace presentkim\geometryapi;
 
 use pocketmine\plugin\PluginBase;
-
 use presentkim\geometryapi\command\PoolCommand;
 use presentkim\geometryapi\command\subcommands\{
   ListSubCommand, LangSubCommand, ReloadSubCommand, SaveSubCommand

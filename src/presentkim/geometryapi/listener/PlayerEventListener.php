@@ -5,7 +5,6 @@ namespace presentkim\geometryapi\listener;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerChangeSkinEvent;
 use pocketmine\event\player\PlayerJoinEvent;
-
 use presentkim\geometryapi\GeometryAPI as Plugin;
 
 class PlayerEventListener implements Listener{

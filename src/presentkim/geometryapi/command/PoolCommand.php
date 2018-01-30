@@ -5,7 +5,6 @@ namespace presentkim\geometryapi\command;
 use pocketmine\command\{
   Command, CommandExecutor, CommandSender, PluginCommand
 };
-
 use presentkim\geometryapi\GeometryAPI as Plugin;
 use presentkim\geometryapi\util\Translation;
 
