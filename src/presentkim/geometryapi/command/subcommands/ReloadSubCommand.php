@@ -5,7 +5,7 @@ namespace presentkim\geometryapi\command\subcommands;
 use pocketmine\command\CommandSender;
 use presentkim\geometryapi\GeometryAPI as Plugin;
 use presentkim\geometryapi\command\{
-  SubCommand, PoolCommand,
+  SubCommand, PoolCommand
 };
 
 class ReloadSubCommand extends SubCommand{
