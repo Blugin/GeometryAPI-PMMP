@@ -86,7 +86,6 @@ class GeometryAPI extends PluginBase{
         foreach ($this->geometryDatas as $geometryName => $geometryData) {
             file_put_contents("{$jsonFolder}{$geometryName}.json", $geometryData);
         }
-        $this->saveConfig();
     }
 
     public function reloadCommand() : void{
