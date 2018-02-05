@@ -127,4 +127,18 @@ class GeometryAPI extends PluginBase{
     public function getGeometryData(string $geometryName) : ?string{
         return $this->geometryDatas[$geometryName] ?? null;
     }
+
+    /**
+     * @param string $name = ''
+     *
+     * @return PoolCommand
+     */
+    public function getCommand(string $name = '') : PoolCommand{
+        return $this->command;
+    }
+
+    /** @param PoolCommand $command */
+    public function setCommand(PoolCommand $command) : void{
+        $this->command = $command;
+    }
 }
