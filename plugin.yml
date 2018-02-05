@@ -4,6 +4,8 @@ main:             presentkim\geometryapi\GeometryAPI
 version:          1.0.1
 api:              [3.0.0, 3.0.0-ALPHA10, 3.0.0-ALPHA11]
 author:           PresentKim
+website:          https://github.com/PMMPPlugin/GeometryAPI
+description:      A plugin skin geometry data api
 
 permissions:
   geometryapi.cmd:
