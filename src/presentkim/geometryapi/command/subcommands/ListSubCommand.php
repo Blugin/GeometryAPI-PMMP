@@ -7,8 +7,7 @@ use presentkim\geometryapi\GeometryAPI as Plugin;
 use presentkim\geometryapi\command\{
   SubCommand, PoolCommand
 };
-
-use function presentkim\geometryapi\util\toInt;
+use presentkim\geometryapi\util\Utils;
 
 class ListSubCommand extends SubCommand{
 
@@ -26,7 +25,7 @@ class ListSubCommand extends SubCommand{
         $list = array_keys($this->plugin->getGeometryDatas());
 
         $max = ceil(count($list) / 5);
-        $page = min($max, (isset($args[0]) ? toInt($args[0], 1, function (int $i){
+        $page = min($max, (isset($args[0]) ? Utils::toInt($args[0], 1, function (int $i){
               return $i > 0 ? 1 : -1;
           }) : 1) - 1);
         $sender->sendMessage(Plugin::$prefix . $this->translate('head', $page + 1, $max));

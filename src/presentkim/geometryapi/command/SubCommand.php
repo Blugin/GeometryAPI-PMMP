@@ -5,8 +5,7 @@ namespace presentkim\geometryapi\command;
 use pocketmine\command\CommandSender;
 use presentkim\geometryapi\GeometryAPI as Plugin;
 use presentkim\geometryapi\util\Translation;
-
-use function presentkim\geometryapi\util\in_arrayi;
+use presentkim\geometryapi\util\Utils;
 
 abstract class SubCommand{
 
@@ -96,7 +95,7 @@ abstract class SubCommand{
      * @return bool
      */
     public function checkLabel(string $label) : bool{
-        return strcasecmp($label, $this->label) === 0 || $this->aliases && in_arrayi($label, $this->aliases);
+        return strcasecmp($label, $this->label) === 0 || $this->aliases && Utils::in_arrayi($label, $this->aliases);
     }
 
     public function updateTranslation() : void{

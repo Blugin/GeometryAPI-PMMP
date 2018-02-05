@@ -32,7 +32,6 @@ class GeometryAPI extends PluginBase{
     public function onLoad() : void{
         if (self::$instance === null) {
             self::$instance = $this;
-            $this->getServer()->getLoader()->loadClass('presentkim\geometryapi\util\Utils');
             Translation::loadFromResource($this->getResource('lang/eng.yml'), true);
         }
     }
