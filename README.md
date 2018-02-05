@@ -53,3 +53,4 @@ Main command : `/geometry <list | lang | reload | save>`
 - \[Added\] Add getters and setters to SubCommand
 - \[Fixed\] Add api 3.0.0-ALPHA11
 - \[Added\] Add website and description
+- \[Changed\] Show only subcommands that sender have permission to use
