@@ -4,8 +4,9 @@ namespace presentkim\geometryapi\command;
 
 use pocketmine\command\CommandSender;
 use presentkim\geometryapi\GeometryAPI as Plugin;
-use presentkim\geometryapi\util\Translation;
-use presentkim\geometryapi\util\Utils;
+use presentkim\geometryapi\util\{
+  Translation, Utils
+};
 
 abstract class SubCommand{
 
