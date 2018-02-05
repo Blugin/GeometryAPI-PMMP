@@ -4,7 +4,8 @@ prefix: "[GeometryAPI] "
 command-generic-failure@permission : "당신은 이 명령어를 사용할 권한이 없습니다"
 
 command-geometry: "geometry"
-command-geometry@usage: "/geometry <list | lang | reload | save>"
+command-geometry@usage: "/geometry <{%0}>"
+command-geometry@usage-separator: " | "
 command-geometry@description: "GeometryAPI 메인 명령어"
 command-geometry@aliases: ["gm"]
 
