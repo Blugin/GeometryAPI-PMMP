@@ -12,14 +12,14 @@ use presentkim\geometryapi\util\Translation;
 
 class GeometryAPI extends PluginBase{
 
-    /** @var self */
+    /** @var GeometryAPI */
     private static $instance = null;
 
     /** @var string */
     public static $prefix = '';
 
-    /** @return self */
-    public static function getInstance() : self{
+    /** @return GeometryAPI */
+    public static function getInstance() : GeometryAPI{
         return self::$instance;
     }
 
