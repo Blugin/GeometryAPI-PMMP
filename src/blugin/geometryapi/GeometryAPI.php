@@ -6,7 +6,7 @@ use pocketmine\plugin\PluginBase;
 use blugin\geometryapi\command\PoolCommand;
 use blugin\geometryapi\command\subcommands\ListSubCommand;
 use blugin\geometryapi\listener\PlayerEventListener;
-use blugin\geometryapi\util\Translation;
+use blugin\geometryapi\lang\PluginLang;
 
 class GeometryAPI extends PluginBase{
 
@@ -21,14 +21,14 @@ class GeometryAPI extends PluginBase{
     /** @var PoolCommand */
     private $command;
 
+    /** @var PluginLang */
+    private $language;
+
     /** @var string[] */
     private $geometryDatas = [];
 
     public function onLoad() : void{
-        if (self::$instance === null) {
-            self::$instance = $this;
-            Translation::loadFromResource($this->getResource('lang/eng.yml'), true);
-        }
+        self::$instance = $this;
     }
 
     public function onEnable() : void{
@@ -38,21 +38,13 @@ class GeometryAPI extends PluginBase{
         if (!file_exists($jsonFolder = "{$dataFolder}json/")) {
             mkdir($jsonFolder, 0777, true);
         }
+        $this->language = new PluginLang($this);
+
         $this->geometryDatas = [];
         foreach (new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($jsonFolder)) as $path => $fileInfo) {
             if (!is_dir($path) && strcasecmp(substr($path, -5), '.json') === 0) {
                 $this->geometryDatas[substr($fileName = $fileInfo->getFileName(), 0, strlen($fileName) - 5)] = file_get_contents($path);
             }
-        }
-
-        $langfilename = $dataFolder . 'lang.yml';
-        if (!file_exists($langfilename)) {
-            $resource = $this->getResource('lang/eng.yml');
-            fwrite($fp = fopen("{$dataFolder}lang.yml", "wb"), $contents = stream_get_contents($resource));
-            fclose($fp);
-            Translation::loadFromContents($contents);
-        } else {
-            Translation::load($langfilename);
         }
 
         if ($this->command == null) {
@@ -115,8 +107,22 @@ class GeometryAPI extends PluginBase{
         return $this->command;
     }
 
-    /** @param PoolCommand $command */
-    public function setCommand(PoolCommand $command) : void{
-        $this->command = $command;
+    /**
+     * @return PluginLang
+     */
+    public function getLanguage() : PluginLang{
+        return $this->language;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSourceFolder() : string{
+        $pharPath = \Phar::running();
+        if (empty($pharPath)) {
+            return dirname(__FILE__, 4) . DIRECTORY_SEPARATOR;
+        } else {
+            return $pharPath . DIRECTORY_SEPARATOR;
+        }
     }
 }
