@@ -8,14 +8,7 @@ website:          https://github.com/PMMPPlugin/GeometryAPI
 description:      A plugin skin geometry data api
 
 permissions:
-  geometryapi.cmd:
-    description:  GeometryAPI main command
+  geometry.cmd:
+    description:  Show skin geometry list
     default:      op
-    children:
-      geometry.cmd.list:
-        description:  GeometryAPI command - list
-        default:      op
-      geometry.cmd.lang:
-        description:  GeometryAPI command - lang
-        default:      op
 ...
