@@ -1,13 +1,13 @@
 <?php
 
-namespace presentkim\geometryapi\command\subcommands;
+namespace blugin\geometryapi\command\subcommands;
 
 use pocketmine\command\CommandSender;
-use presentkim\geometryapi\GeometryAPI as Plugin;
-use presentkim\geometryapi\command\{
+use blugin\geometryapi\GeometryAPI as Plugin;
+use blugin\geometryapi\command\{
   SubCommand, PoolCommand
 };
-use presentkim\geometryapi\util\Utils;
+use blugin\geometryapi\util\Utils;
 
 class ListSubCommand extends SubCommand{
 

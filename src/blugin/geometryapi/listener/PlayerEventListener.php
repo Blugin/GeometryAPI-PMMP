@@ -1,12 +1,12 @@
 <?php
 
-namespace presentkim\geometryapi\listener;
+namespace blugin\geometryapi\listener;
 
 use pocketmine\event\Listener;
 use pocketmine\event\player\{
     PlayerChangeSkinEvent, PlayerJoinEvent
 };
-use presentkim\geometryapi\GeometryAPI as Plugin;
+use blugin\geometryapi\GeometryAPI as Plugin;
 
 class PlayerEventListener implements Listener{
 

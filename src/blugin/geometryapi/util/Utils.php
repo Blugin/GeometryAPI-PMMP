@@ -1,6 +1,6 @@
 <?php
 
-namespace presentkim\geometryapi\util;
+namespace blugin\geometryapi\util;
 
 class Utils{
 

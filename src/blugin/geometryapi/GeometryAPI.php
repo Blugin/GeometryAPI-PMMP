@@ -1,12 +1,12 @@
 <?php
 
-namespace presentkim\geometryapi;
+namespace blugin\geometryapi;
 
 use pocketmine\plugin\PluginBase;
-use presentkim\geometryapi\command\PoolCommand;
-use presentkim\geometryapi\command\subcommands\ListSubCommand;
-use presentkim\geometryapi\listener\PlayerEventListener;
-use presentkim\geometryapi\util\Translation;
+use blugin\geometryapi\command\PoolCommand;
+use blugin\geometryapi\command\subcommands\ListSubCommand;
+use blugin\geometryapi\listener\PlayerEventListener;
+use blugin\geometryapi\util\Translation;
 
 class GeometryAPI extends PluginBase{
 

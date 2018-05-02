@@ -1,12 +1,12 @@
 <?php
 
-namespace presentkim\geometryapi\command;
+namespace blugin\geometryapi\command;
 
 use pocketmine\command\{
   Command, PluginCommand, CommandExecutor, CommandSender, ConsoleCommandSender
 };
-use presentkim\geometryapi\GeometryAPI as Plugin;
-use presentkim\geometryapi\util\Translation;
+use blugin\geometryapi\GeometryAPI as Plugin;
+use blugin\geometryapi\util\Translation;
 
 class PoolCommand extends PluginCommand implements CommandExecutor{
 

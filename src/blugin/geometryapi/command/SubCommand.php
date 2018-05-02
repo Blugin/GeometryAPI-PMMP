@@ -1,10 +1,10 @@
 <?php
 
-namespace presentkim\geometryapi\command;
+namespace blugin\geometryapi\command;
 
 use pocketmine\command\CommandSender;
-use presentkim\geometryapi\GeometryAPI as Plugin;
-use presentkim\geometryapi\util\{
+use blugin\geometryapi\GeometryAPI as Plugin;
+use blugin\geometryapi\util\{
   Translation, Utils
 };
 

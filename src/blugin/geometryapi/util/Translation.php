@@ -1,8 +1,8 @@
 <?php
 
-namespace presentkim\geometryapi\util;
+namespace blugin\geometryapi\util;
 
-use presentkim\geometryapi\GeometryAPI as Plugin;
+use blugin\geometryapi\GeometryAPI as Plugin;
 
 class Translation{
 
