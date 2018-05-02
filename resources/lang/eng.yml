@@ -1,6 +1,4 @@
 ---
-prefix: "[GeometryAPI] "
-
 command-generic-failure@permission : "You do not have permission to use this command"
 
 command-geometry: "geometry"

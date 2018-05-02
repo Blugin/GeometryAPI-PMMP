@@ -13,9 +13,6 @@ class GeometryAPI extends PluginBase{
     /** @var GeometryAPI */
     private static $instance = null;
 
-    /** @var string */
-    public static $prefix = '';
-
     /** @return GeometryAPI */
     public static function getInstance() : GeometryAPI{
         return self::$instance;
@@ -68,7 +65,6 @@ class GeometryAPI extends PluginBase{
             Translation::load($langfilename);
         }
 
-        self::$prefix = Translation::translate('prefix');
         $this->reloadCommand();
     }
 
