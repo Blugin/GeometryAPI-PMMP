@@ -32,22 +32,12 @@ class GeometryAPI extends PluginBase{
     }
 
     public function onEnable() : void{
-        $this->load();
-        $this->getServer()->getPluginManager()->registerEvents(new PlayerEventListener(), $this);
-    }
-
-    public function onDisable() : void{
-        $this->save();
-    }
-
-    public function load() : void{
         if (!file_exists($dataFolder = $this->getDataFolder())) {
             mkdir($dataFolder, 0777, true);
         }
         if (!file_exists($jsonFolder = "{$dataFolder}json/")) {
             mkdir($jsonFolder, 0777, true);
         }
-
         $this->geometryDatas = [];
         foreach (new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($jsonFolder)) as $path => $fileInfo) {
             if (!is_dir($path) && strcasecmp(substr($path, -5), '.json') === 0) {
@@ -65,23 +55,6 @@ class GeometryAPI extends PluginBase{
             Translation::load($langfilename);
         }
 
-        $this->reloadCommand();
-    }
-
-    public function save() : void{
-        if (!file_exists($dataFolder = $this->getDataFolder())) {
-            mkdir($dataFolder, 0777, true);
-        }
-        if (!file_exists($jsonFolder = "{$dataFolder}json/")) {
-            mkdir($jsonFolder, 0777, true);
-        }
-
-        foreach ($this->geometryDatas as $geometryName => $geometryData) {
-            file_put_contents("{$jsonFolder}{$geometryName}.json", $geometryData);
-        }
-    }
-
-    public function reloadCommand() : void{
         if ($this->command == null) {
             $this->command = new PoolCommand($this, 'geometry');
             $this->command->createSubCommand(ListSubCommand::class);
@@ -92,6 +65,21 @@ class GeometryAPI extends PluginBase{
             $this->getServer()->getCommandMap()->unregister($this->command);
         }
         $this->getServer()->getCommandMap()->register(strtolower($this->getName()), $this->command);
+
+        $this->getServer()->getPluginManager()->registerEvents(new PlayerEventListener(), $this);
+    }
+
+    public function onDisable() : void{
+        if (!file_exists($dataFolder = $this->getDataFolder())) {
+            mkdir($dataFolder, 0777, true);
+        }
+        if (!file_exists($jsonFolder = "{$dataFolder}json/")) {
+            mkdir($jsonFolder, 0777, true);
+        }
+
+        foreach ($this->geometryDatas as $geometryName => $geometryData) {
+            file_put_contents("{$jsonFolder}{$geometryName}.json", $geometryData);
+        }
     }
 
     /**  @return string[] */
