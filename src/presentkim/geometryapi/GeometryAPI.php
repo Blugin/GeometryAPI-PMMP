@@ -4,9 +4,7 @@ namespace presentkim\geometryapi;
 
 use pocketmine\plugin\PluginBase;
 use presentkim\geometryapi\command\PoolCommand;
-use presentkim\geometryapi\command\subcommands\{
-  ListSubCommand, LangSubCommand, ReloadSubCommand, SaveSubCommand
-};
+use presentkim\geometryapi\command\subcommands\ListSubCommand;
 use presentkim\geometryapi\listener\PlayerEventListener;
 use presentkim\geometryapi\util\Translation;
 
@@ -91,9 +89,6 @@ class GeometryAPI extends PluginBase{
         if ($this->command == null) {
             $this->command = new PoolCommand($this, 'geometry');
             $this->command->createSubCommand(ListSubCommand::class);
-            $this->command->createSubCommand(LangSubCommand::class);
-            $this->command->createSubCommand(ReloadSubCommand::class);
-            $this->command->createSubCommand(SaveSubCommand::class);
         }
         $this->command->updateTranslation();
         $this->command->updateSudCommandTranslation();

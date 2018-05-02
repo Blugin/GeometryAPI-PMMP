@@ -18,10 +18,4 @@ permissions:
       geometry.cmd.lang:
         description:  GeometryAPI command - lang
         default:      op
-      geometry.cmd.reload:
-        description:  GeometryAPI command - reload
-        default:      op
-      geometry.cmd.save:
-        description:  GeometryAPI command - save
-        default:      op
 ...

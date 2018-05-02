@@ -14,20 +14,4 @@ command-geometry-list@usage: "/geometry List [Page]"
 command-geometry-list@head: "--- List (page {%0} of {%1}) ---"
 command-geometry-list@item: " - {%0}"
 command-geometry-list@aliases: ["l"]
-
-command-geometry-lang: "lang"
-command-geometry-lang@usage: "/geometry Lang <language prefix>"
-command-geometry-lang@success: "{%0} language file was loaded"
-command-geometry-lang@failure: "{%0} is invalid language prefix"
-command-geometry-lang@aliases: ["language"]
-
-command-geometry-reload: "reload"
-command-geometry-reload@usage: "/geometry Reload"
-command-geometry-reload@success: "All data was reloaded"
-command-geometry-reload@aliases: ["rl"]
-
-command-geometry-save: "save"
-command-geometry-save@usage: "/geometry Save"
-command-geometry-save@success: "All data was saved"
-command-geometry-save@aliases: ["sv"]
 ...
