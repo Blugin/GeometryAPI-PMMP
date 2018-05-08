@@ -100,7 +100,7 @@ class GeometryAPI extends PluginBase implements CommandExecutor{
           (string) $max,
         ]));
         for ($i = $page * 5, $count = count($list), $loopMax = ($page + 1) * 5; $i < $count && $i < $loopMax; $i++) {
-            $sender->sendMessage($this->language->translate('commands.geometry.item ', [$list[$i]]));
+            $sender->sendMessage($this->language->translate('commands.geometry.item', [$list[$i]]));
         }
         return true;
     }
