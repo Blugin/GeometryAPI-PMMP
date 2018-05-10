@@ -15,27 +15,42 @@ class Bone implements \JsonSerializable{
     /** @var JsonVector3, rotation */
     protected $rotation;
 
+    /** @var JsonVector3, pos */
+    protected $pos;
+
     /** @var string, META_BoneType */
     protected $bonetype;
 
     /** @var null|string, parent */
     protected $parent;
 
+    /** @var null|string, material */
+    protected $material;
+
+    /** @var bool, neverRender (inverse) */
+    protected $render;
+
     /**
      * Cube constructor.
      *
      * @param string           $name     = 'undefined'
      * @param null|JsonVector3 $pivot    = new JsonVector3()
+     * @param null|JsonVector3 $pos      = new JsonVector3()
      * @param null|JsonVector3 $rotation = new JsonVector3()
      * @param string           $bonetype = 'base'
      * @param null|string      $parent   = null
+     * @param null|string      $material = null
+     * @param bool             $render   = true
      */
-    public function __construct(string $name = 'undefined', ?JsonVector3 $pivot = null, ?JsonVector3 $rotation = null, string $bonetype = 'base', ?string $parent = null){
+    public function __construct(string $name = 'undefined', ?JsonVector3 $pivot = null, ?JsonVector3 $rotation = null, ?JsonVector3 $pos = null, string $bonetype = 'base', ?string $parent = null, ?string $material = null, bool $render = true){
         $this->name = $name;
         $this->pivot = $pivot ?? new JsonVector3();
         $this->rotation = $rotation ?? new JsonVector3();
+        $this->pos = $pos ?? new JsonVector3();
         $this->bonetype = $bonetype;
         $this->parent = $parent;
+        $this->material = $material;
+        $this->render = $render;
     }
 
     /** @return string */
@@ -68,6 +83,16 @@ class Bone implements \JsonSerializable{
         $this->rotation = $rotation;
     }
 
+    /**@return JsonVector3 */
+    public function getPos() : JsonVector3{
+        return $this->pos;
+    }
+
+    /**@param JsonVector3 $pos */
+    public function setPos(JsonVector3 $pos) : void{
+        $this->pos = $pos;
+    }
+
     /** @return string */
     public function getBonetype() : string{
         return $this->bonetype;
@@ -89,6 +114,28 @@ class Bone implements \JsonSerializable{
     }
 
     /**
+     * @return null|string
+     */
+    public function getMaterial() : ?string{
+        return $this->material;
+    }
+
+    /**@param null|string $material */
+    public function setMaterial(?string $material) : void{
+        $this->material = $material;
+    }
+
+    /**@return bool */
+    public function isRender() : bool{
+        return $this->render;
+    }
+
+    /**@param bool $render */
+    public function setRender(bool $render) : void{
+        $this->render = $render;
+    }
+
+    /**
      * Specify data which should be serialized to JSON
      *
      * @link  http://php.net/manual/en/jsonserializable.jsonserialize.php
@@ -99,8 +146,11 @@ class Bone implements \JsonSerializable{
           'name'          => $this->name,
           'pivot'         => $this->pivot,
           'rotation'      => $this->rotation,
+          'pos'           => $this->pos,
           'META_BoneType' => $this->bonetype,
           'parent'        => $this->parent,
+          'material'      => $this->material,
+          'neverRender'   => !$this->render,
         ];
     }
 
@@ -115,10 +165,13 @@ class Bone implements \JsonSerializable{
             $name = (string) $jsonData['name'];
             $pivot = JsonVector3::jsonDeserialize($jsonData['pivot']);
             $rotation = JsonVector3::jsonDeserialize($jsonData['rotation']);
+            $pos = JsonVector3::jsonDeserialize($jsonData['pos']);
             $bonetype = $jsonData['bonetype'] ?? 'base';
             $parent = $jsonData['parent'] ?? null;
+            $material = $jsonData['material'] ?? null;
+            $render = isset($jsonData['neverRender']) && is_bool($jsonData['neverRender']) ? !((bool) $jsonData['neverRender']) : true;
 
-            $bone = new Bone($name, $pivot, $rotation, $bonetype, $parent);
+            $bone = new Bone($name, $pivot, $rotation, $pos, $bonetype, $parent, $material, $render);
         }
         return $bone;
     }
