@@ -8,15 +8,15 @@ use pocketmine\event\Listener;
 use pocketmine\event\player\{
   PlayerChangeSkinEvent, PlayerJoinEvent
 };
-use blugin\geometryapi\GeometryAPI as Plugin;
+use blugin\geometryapi\GeometryAPI;
 
 class PlayerEventListener implements Listener{
 
-    /** @var Plugin */
+    /** @var GeometryAPI */
     private $owner = null;
 
-    public function __construct(){
-        $this->owner = Plugin::getInstance();
+    public function __construct(GeometryAPI $owner){
+        $this->owner = $owner;
     }
 
     /** @param PlayerChangeSkinEvent $event */
