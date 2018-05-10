@@ -6,7 +6,7 @@ namespace blugin\geometryapi\listener;
 
 use pocketmine\event\Listener;
 use pocketmine\event\player\{
-    PlayerChangeSkinEvent, PlayerJoinEvent
+  PlayerChangeSkinEvent, PlayerJoinEvent
 };
 use blugin\geometryapi\GeometryAPI as Plugin;
 
@@ -22,12 +22,18 @@ class PlayerEventListener implements Listener{
     /** @param PlayerChangeSkinEvent $event */
     public function onPlayerChangeSkinEvent(PlayerChangeSkinEvent $event) : void{
         $skin = $event->getNewSkin();
-        $this->owner->addGeometryData($skin->getGeometryName(), $skin->getGeometryData());
+        $geometryData = $skin->getGeometryData();
+        if (!empty($geometryData)) {
+            $this->owner->addGeometryData($skin->getGeometryName(), $geometryData);
+        }
     }
 
     /** @param PlayerJoinEvent $event */
     public function onPlayerJoinEvent(PlayerJoinEvent $event) : void{
         $skin = $event->getPlayer()->getSkin();
-        $this->owner->addGeometryData($skin->getGeometryName(), $skin->getGeometryData());
+        $geometryData = $skin->getGeometryData();
+        if (!empty($geometryData)) {
+            $this->owner->addGeometryData($skin->getGeometryName(), $geometryData);
+        }
     }
 }
