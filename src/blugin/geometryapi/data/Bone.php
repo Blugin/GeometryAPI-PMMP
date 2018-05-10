@@ -7,7 +7,7 @@ namespace blugin\geometryapi\data;
 class Bone implements \JsonSerializable{
 
     /** @var string, name */
-    protected $name = 'undefined';
+    protected $name;
 
     /** @var JsonVector3, pivot */
     protected $pivot;
@@ -16,10 +16,10 @@ class Bone implements \JsonSerializable{
     protected $rotation;
 
     /** @var string, META_BoneType */
-    protected $bonetype = 'base';
+    protected $bonetype;
 
     /** @var null|string, parent */
-    protected $parent = null;
+    protected $parent;
 
     /**
      * Cube constructor.
