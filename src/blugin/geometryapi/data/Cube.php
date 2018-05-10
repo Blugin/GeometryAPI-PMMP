@@ -21,6 +21,9 @@ class Cube implements \JsonSerializable{
     /** @var bool, mirror */
     protected $mirror;
 
+    /** @var bool, reset */
+    protected $reset;
+
     /**
      * Cube constructor.
      *
@@ -29,13 +32,15 @@ class Cube implements \JsonSerializable{
      * @param null|JsonVector2 $uv      = new JsonVector2()
      * @param float            $inflate = 0
      * @param bool             $mirror  = false
+     * @param bool             $reset   = false
      */
-    public function __construct(?JsonVector3 $origin = null, ?JsonVector3 $size = null, ?JsonVector2 $uv = null, float $inflate = 0, bool $mirror = false){
+    public function __construct(?JsonVector3 $origin = null, ?JsonVector3 $size = null, ?JsonVector2 $uv = null, float $inflate = 0, bool $mirror = false, bool $reset = false){
         $this->origin = $origin ?? new JsonVector3();
         $this->size = $size ?? new JsonVector3();
         $this->uv = $uv ?? new JsonVector2();
         $this->inflate = $inflate;
         $this->mirror = $mirror;
+        $this->reset = $reset;
     }
 
     /** @return JsonVector3 */
@@ -88,6 +93,16 @@ class Cube implements \JsonSerializable{
         $this->mirror = $mirror;
     }
 
+    /** @return bool */
+    public function isReset() : bool{
+        return $this->reset;
+    }
+
+    /** @param bool $reset */
+    public function setReset(bool $reset) : void{
+        $this->reset = $reset;
+    }
+
     /**
      * Specify data which should be serialized to JSON
      *
@@ -101,6 +116,7 @@ class Cube implements \JsonSerializable{
           'uv'      => $this->uv,
           'inflate' => $this->inflate,
           'mirror'  => $this->mirror,
+          'reset'   => $this->reset,
         ];
     }
 
@@ -117,8 +133,9 @@ class Cube implements \JsonSerializable{
             $uv = JsonVector2::jsonDeserialize($jsonData['uv']);
             $inflate = isset($jsonData['uv']) && is_numeric($jsonData['uv']) ? (float) $jsonData['uv'] : 0;
             $mirror = isset($jsonData['mirror']) && is_bool($jsonData['mirror']) ? (bool) $jsonData['mirror'] : false;
+            $reset = isset($jsonData['reset']) && is_bool($jsonData['reset']) ? (bool) $jsonData['reset'] : false;
 
-            $cube = new Cube($origin, $size, $uv, $inflate, $mirror);
+            $cube = new Cube($origin, $size, $uv, $inflate, $mirror, $reset);
         }
         return $cube;
     }
