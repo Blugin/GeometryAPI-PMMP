@@ -6,6 +6,18 @@ namespace blugin\geometryapi\data;
 
 class GeometryData implements \JsonSerializable{
 
+    /** @const Animation data flags */
+    public const ANI_FLAG_ARMS_DOWN = 0;
+    public const ANI_FLAG_ARMS_OUT_FRONT = 1;
+    public const ANI_FLAG_STATUE_OF_LIBERTY_ARMS = 2;
+    public const ANI_FLAG_SINGLE_ARM_ANIMATION = 3;
+    public const ANI_FLAG_STATIONARY_LEGS = 4;
+    public const ANI_FLAG_SINGLE_LEG_ANIMATION = 5;
+    public const ANI_FLAG_NO_HEAD_BOB = 6;
+    public const ANI_FLAG_DONT_SHOW_ARMOR = 7;
+    public const ANI_FLAG_UPSIDE_DOWN = 8;
+    public const ANI_FLAG_INVERTED_CROUCH = 9;
+
     /** @var string, name */
     protected $name;
 
