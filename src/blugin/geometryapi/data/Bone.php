@@ -9,6 +9,9 @@ class Bone implements \JsonSerializable{
     /** @var string, name */
     protected $name;
 
+    /** @var Cube[], cubes */
+    protected $cubes;
+
     /** @var JsonVector3, pivot */
     protected $pivot;
 
@@ -34,6 +37,7 @@ class Bone implements \JsonSerializable{
      * Cube constructor.
      *
      * @param string           $name     = 'undefined'
+     * @param Cube[]           $cubes    = []
      * @param null|JsonVector3 $pivot    = new JsonVector3()
      * @param null|JsonVector3 $pos      = new JsonVector3()
      * @param null|JsonVector3 $rotation = new JsonVector3()
@@ -42,8 +46,9 @@ class Bone implements \JsonSerializable{
      * @param null|string      $material = null
      * @param bool             $render   = true
      */
-    public function __construct(string $name = 'undefined', ?JsonVector3 $pivot = null, ?JsonVector3 $rotation = null, ?JsonVector3 $pos = null, string $bonetype = 'base', ?string $parent = null, ?string $material = null, bool $render = true){
+    public function __construct(string $name = 'undefined', array $cubes = [], ?JsonVector3 $pivot = null, ?JsonVector3 $rotation = null, ?JsonVector3 $pos = null, string $bonetype = 'base', ?string $parent = null, ?string $material = null, bool $render = true){
         $this->name = $name;
+        $this->cubes = $cubes;
         $this->pivot = $pivot ?? new JsonVector3();
         $this->rotation = $rotation ?? new JsonVector3();
         $this->pos = $pos ?? new JsonVector3();
@@ -61,6 +66,21 @@ class Bone implements \JsonSerializable{
     /** @param string $name */
     public function setName(string $name) : void{
         $this->name = $name;
+    }
+
+    /** @return Cube[] */
+    public function getCubes() : array{
+        return $this->cubes;
+    }
+
+    /** @param Cube[] $cubes */
+    public function setCubes(array $cubes) : void{
+        $this->cubes = $cubes;
+    }
+
+    /** @param Cube $cube */
+    public function addCube(Cube $cube) : void{
+        $this->cubes[] = $cube;
     }
 
     /** @return JsonVector3 */
@@ -144,6 +164,7 @@ class Bone implements \JsonSerializable{
     public function jsonSerialize() : array{
         return [
           'name'          => $this->name,
+          'cubes'         => $this->cubes,
           'pivot'         => $this->pivot,
           'rotation'      => $this->rotation,
           'pos'           => $this->pos,
@@ -161,8 +182,11 @@ class Bone implements \JsonSerializable{
      */
     public static function jsonDeserialize(array $jsonData) : ?Bone{
         $bone = null;
-        if (isset($jsonData['name'], $jsonData['pivot'])) {
+        if (isset($jsonData['name'], $jsonData['cubes'], $jsonData['pivot'])) {
             $name = (string) $jsonData['name'];
+            $cubes = array_map(function (array $value){
+                return Cube::jsonDeserialize($value);
+            }, $jsonData['cubes']);
             $pivot = JsonVector3::jsonDeserialize($jsonData['pivot']);
             $rotation = JsonVector3::jsonDeserialize($jsonData['rotation']);
             $pos = JsonVector3::jsonDeserialize($jsonData['pos']);
@@ -171,7 +195,7 @@ class Bone implements \JsonSerializable{
             $material = $jsonData['material'] ?? null;
             $render = isset($jsonData['neverRender']) && is_bool($jsonData['neverRender']) ? !((bool) $jsonData['neverRender']) : true;
 
-            $bone = new Bone($name, $pivot, $rotation, $pos, $bonetype, $parent, $material, $render);
+            $bone = new Bone($name, $cubes, $pivot, $rotation, $pos, $bonetype, $parent, $material, $render);
         }
         return $bone;
     }
