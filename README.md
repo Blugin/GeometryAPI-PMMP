@@ -1,7 +1,6 @@
 <img src="./assets/icon/index.svg" height="256" width="256">  
 
 [![License](https://img.shields.io/github/license/PMMPPlugin/GeometryAPI.svg?label=License)](LICENSE)
-[![Poggit](https://poggit.pmmp.io/ci.shield/PMMPPlugin/GeometryAPI/GeometryAPI)](https://poggit.pmmp.io/ci/PMMPPlugin/GeometryAPI)
 [![Release](https://img.shields.io/github/release/PMMPPlugin/GeometryAPI.svg?label=Release)](https://github.com/PMMPPlugin/GeometryAPI/releases/latest)
 [![Download](https://img.shields.io/github/downloads/PMMPPlugin/GeometryAPI/total.svg?label=Download)](https://github.com/PMMPPlugin/GeometryAPI/releases/latest)
 
