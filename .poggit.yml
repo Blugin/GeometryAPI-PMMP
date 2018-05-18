@@ -1,0 +1,10 @@
+--- # Poggit-CI Manifest. Open the CI at https://poggit.pmmp.io/ci/Blugin/GeometryAPI-PMMP
+
+branches:
+- master
+
+projects:
+  GeometryAPI:
+    path: ""
+    icon: assets/icon/512x512.png
+...
