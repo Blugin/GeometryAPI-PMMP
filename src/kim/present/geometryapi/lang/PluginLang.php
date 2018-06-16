@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace blugin\geometryapi\lang;
+namespace kim\present\geometryapi\lang;
 
-use blugin\geometryapi\GeometryAPI;
+use kim\present\geometryapi\GeometryAPI;
 
 class PluginLang{
 

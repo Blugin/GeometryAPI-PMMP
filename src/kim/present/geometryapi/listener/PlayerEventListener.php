@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace blugin\geometryapi\listener;
+namespace kim\present\geometryapi\listener;
 
 use pocketmine\event\Listener;
 use pocketmine\event\player\{
   PlayerChangeSkinEvent, PlayerJoinEvent
 };
-use blugin\geometryapi\GeometryAPI;
+use kim\present\geometryapi\GeometryAPI;
 
 class PlayerEventListener implements Listener{
 

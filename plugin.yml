@@ -1,10 +1,10 @@
 ---
 name:             GeometryAPI
-main:             blugin\geometryapi\GeometryAPI
+main:             kim\present\geometryapi\GeometryAPI
 version:          1.0.2
 api:              [3.0.0, 3.0.0-ALPHA10, 3.0.0-ALPHA11, 3.0.0-ALPHA12]
 author:           PresentKim
-website:          https://github.com/PMMPPlugin/GeometryAPI
+website:          https://github.com/PresentKim/GeometryAPI-PMMP
 description:      A plugin skin geometry data api
 
 permissions:

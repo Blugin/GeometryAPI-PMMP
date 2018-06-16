@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace blugin\geometryapi;
+namespace kim\present\geometryapi;
 
 use pocketmine\command\{
   Command, PluginCommand, CommandExecutor, CommandSender
 };
 use pocketmine\plugin\PluginBase;
-use blugin\geometryapi\listener\PlayerEventListener;
-use blugin\geometryapi\lang\PluginLang;
+use kim\present\geometryapi\listener\PlayerEventListener;
+use kim\present\geometryapi\lang\PluginLang;
 
 class GeometryAPI extends PluginBase implements CommandExecutor{
 
