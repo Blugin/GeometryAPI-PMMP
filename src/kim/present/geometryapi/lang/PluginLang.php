@@ -10,19 +10,13 @@ class PluginLang{
 
 	public const FALLBACK_LANGUAGE = "eng";
 
-	/**
-	 * @var DustBin
-	 */
+	/** @var DustBin */
 	protected $plugin;
 
-	/**
-	 * @var string[]
-	 */
+	/** @var string[] */
 	protected $lang = [];
 
-	/**
-	 * @var string[]
-	 */
+	/** @var string[] */
 	protected $fallbackLang = [];
 
 	public function __construct(GeometryAPI $plugin){
