@@ -33,14 +33,14 @@ class GeometryAPI extends PluginBase implements CommandExecutor{
 	/**
 	 * Called when the plugin is loaded, before calling onEnable()
 	 */
-	protected function onLoad() : void{
+	public function onLoad() : void{
 		self::$instance = $this;
 	}
 
 	/**
 	 * Called when the plugin is enabled
 	 */
-	protected function onEnable() : void{
+	public function onEnable() : void{
 		if(!file_exists($dataFolder = $this->getDataFolder())){
 			mkdir($dataFolder, 0777, true);
 		}
@@ -75,7 +75,7 @@ class GeometryAPI extends PluginBase implements CommandExecutor{
 	 * Called when the plugin is disabled
 	 * Use this to free open things and finish actions
 	 */
-	protected function onDisable() : void{
+	public function onDisable() : void{
 		if(!file_exists($dataFolder = $this->getDataFolder())){
 			mkdir($dataFolder, 0777, true);
 		}
