@@ -6,6 +6,7 @@ namespace kim\present\geometryapi;
 
 use kim\present\geometryapi\lang\PluginLang;
 use kim\present\geometryapi\listener\PlayerEventListener;
+use kim\present\geometryapi\task\CheckUpdateAsyncTask;
 use pocketmine\command\{
 	Command, CommandExecutor, CommandSender, PluginCommand
 };
@@ -52,6 +53,11 @@ class GeometryAPI extends PluginBase implements CommandExecutor{
 		$this->saveDefaultConfig();
 		$this->reloadConfig();
 		$config = $this->getConfig();
+
+		//Check latest version
+		if($config->getNested("settings.update-check", false)){
+			$this->getServer()->getAsyncPool()->submitTask(new CheckUpdateAsyncTask());
+		}
 
 		//Load language file
 		$this->language = new PluginLang($this, $config->getNested("settings.language"));

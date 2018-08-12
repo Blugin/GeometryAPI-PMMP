@@ -7,6 +7,8 @@ settings:
   #가능한 언어: eng, kor
   language: "kor"
 
+  update-check: false
+
 
 command:
   #메인 명령어의 이름
