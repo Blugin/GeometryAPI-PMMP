@@ -1,14 +1,14 @@
 ---
-name:             GeometryAPI
-main:             kim\present\geometryapi\GeometryAPI
-version:          1.0.2
-api:              [3.0.0, 4.0.0]
-author:           PresentKim
-website:          https://github.com/PresentKim/GeometryAPI-PMMP
-description:      A plugin skin geometry data api
+name: GeometryAPI
+main: kim\present\geometryapi\GeometryAPI
+version: 1.0.2
+api: [3.0.0, 4.0.0]
+author: PresentKim
+website: https://github.com/PresentKim/GeometryAPI-PMMP
+description: A plugin skin geometry data api
 
 permissions:
   geometry.cmd:
-    description:  Show skin geometry list
-    default:      op
+    description: Show skin geometry list
+    default: op
 ...
