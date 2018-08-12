@@ -45,7 +45,7 @@ class PlayerEventListener implements Listener{
 		$skin = $event->getNewSkin();
 		$geometryData = $skin->getGeometryData();
 		if(!empty($geometryData)){
-			$this->owner->addGeometryData($skin->getGeometryName(), $geometryData);
+			$this->owner->readGeometryData($geometryData);
 		}
 	}
 
@@ -54,7 +54,7 @@ class PlayerEventListener implements Listener{
 		$skin = $event->getPlayer()->getSkin();
 		$geometryData = $skin->getGeometryData();
 		if(!empty($geometryData)){
-			$this->owner->addGeometryData($skin->getGeometryName(), $geometryData);
+			$this->owner->readGeometryData($geometryData);
 		}
 	}
 }

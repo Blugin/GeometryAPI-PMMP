@@ -107,7 +107,7 @@ class GeometryAPI extends PluginBase implements CommandExecutor{
 		$this->geometryDatas = [];
 		foreach(new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($jsonFolder)) as $path => $fileInfo){
 			if(!is_dir($path) && strcasecmp(substr($path, -5), ".json") === 0){
-				$this->geometryDatas[substr($fileName = $fileInfo->getFileName(), 0, strlen($fileName) - 5)] = file_get_contents($path);
+				$this->readGeometryData(file_get_contents($path));
 			}
 		}
 
@@ -187,6 +187,17 @@ class GeometryAPI extends PluginBase implements CommandExecutor{
 	public function addGeometryData(string $geometryName, string $geometryData) : void{
 		if(!isset($this->geometryDatas[$geometryName])){
 			$this->geometryDatas[$geometryName] = $geometryData;
+		}
+	}
+
+	/**
+	 * @param string $pureGeometryData
+	 */
+	public function readGeometryData(string $pureGeometryData) : void{
+		foreach(json_decode($pureGeometryData, true) as $geometryName => $geometryData){
+			if(strpos($geometryName, "geometry.") === 0){
+				$this->addGeometryData($geometryName, json_encode([$geometryName => $geometryData]));
+			}
 		}
 	}
 
