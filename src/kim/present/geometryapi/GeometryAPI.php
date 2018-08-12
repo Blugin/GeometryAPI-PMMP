@@ -87,10 +87,10 @@ class GeometryAPI extends PluginBase implements CommandExecutor{
 
 		//Register main command
 		$this->command = new PluginCommand($config->getNested("command.name"), $this);
-		$this->command->setPermission("dustbin.cmd");
+		$this->command->setPermission("startkit.cmd");
 		$this->command->setAliases($config->getNested("command.aliases"));
-		$this->command->setUsage($this->language->translate("commands.dustbin.usage"));
-		$this->command->setDescription($this->language->translate("commands.dustbin.description"));
+		$this->command->setUsage($this->language->translate("commands.startkit.usage"));
+		$this->command->setDescription($this->language->translate("commands.startkit.description"));
 		$this->getServer()->getCommandMap()->register($this->getName(), $this->command);
 
 		//Load permission's default value from config
