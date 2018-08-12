@@ -33,7 +33,6 @@ use pocketmine\event\player\{
 };
 
 class PlayerEventListener implements Listener{
-
 	/** @var GeometryAPI */
 	private $owner = null;
 
