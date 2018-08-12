@@ -9,10 +9,12 @@ use kim\present\geometryapi\listener\PlayerEventListener;
 use pocketmine\command\{
 	Command, CommandExecutor, CommandSender, PluginCommand
 };
+use pocketmine\permission\{
+	Permission, PermissionManager
+};
 use pocketmine\plugin\PluginBase;
 
 class GeometryAPI extends PluginBase implements CommandExecutor{
-
 	/** @var GeometryAPI */
 	private static $instance = null;
 
@@ -41,24 +43,37 @@ class GeometryAPI extends PluginBase implements CommandExecutor{
 	 * Called when the plugin is enabled
 	 */
 	public function onEnable() : void{
-		if(!file_exists($dataFolder = $this->getDataFolder())){
-			mkdir($dataFolder, 0777, true);
-		}
-		$this->language = new PluginLang($this);
+		//Save default resources
+		$this->saveResource("lang/eng/lang.ini", false);
+		$this->saveResource("lang/kor/lang.ini", false);
+		$this->saveResource("lang/language.list", false);
 
-		if($this->command !== null){
-			$this->getServer()->getCommandMap()->unregister($this->command);
-		}
-		$this->command = new PluginCommand($this->language->translate('commands.geometry'), $this);
-		$this->command->setPermission('geometry.cmd');
-		$this->command->setDescription($this->language->translate('commands.geometry.description'));
-		$this->command->setUsage($this->language->translate('commands.geometry.usage'));
-		if(is_array($aliases = $this->language->getArray('commands.geometry.aliases'))){
-			$this->command->setAliases($aliases);
-		}
-		$this->getServer()->getCommandMap()->register('geometryapi', $this->command);
+		//Load config file
+		$this->saveDefaultConfig();
+		$this->reloadConfig();
+		$config = $this->getConfig();
 
-		if(!file_exists($jsonFolder = "{$dataFolder}json/")){
+		//Load language file
+		$this->language = new PluginLang($this, $config->getNested("settings.language"));
+		$this->getLogger()->info($this->language->translate("language.selected", [$this->language->getName(), $this->language->getLang()]));
+
+		//Register main command
+		$this->command = new PluginCommand($config->getNested("command.name"), $this);
+		$this->command->setPermission("dustbin.cmd");
+		$this->command->setAliases($config->getNested("command.aliases"));
+		$this->command->setUsage($this->language->translate("commands.dustbin.usage"));
+		$this->command->setDescription($this->language->translate("commands.dustbin.description"));
+		$this->getServer()->getCommandMap()->register($this->getName(), $this->command);
+
+		//Load permission's default value from config
+		$permissions = PermissionManager::getInstance()->getPermissions();
+		$defaultValue = $config->getNested("permission.main");
+		if($defaultValue !== null){
+			$permissions["geometry.cmd"]->setDefault(Permission::getByName($config->getNested("permission.main")));
+		}
+
+		//Load geometry datas
+		if(!file_exists($jsonFolder = "{$this->getDataFolder()}json/")){
 			mkdir($jsonFolder, 0777, true);
 		}
 		$this->geometryDatas = [];
@@ -68,6 +83,7 @@ class GeometryAPI extends PluginBase implements CommandExecutor{
 			}
 		}
 
+		//Register event listeners
 		$this->getServer()->getPluginManager()->registerEvents(new PlayerEventListener($this), $this);
 	}
 
@@ -76,14 +92,8 @@ class GeometryAPI extends PluginBase implements CommandExecutor{
 	 * Use this to free open things and finish actions
 	 */
 	public function onDisable() : void{
-		if(!file_exists($dataFolder = $this->getDataFolder())){
-			mkdir($dataFolder, 0777, true);
-		}
-		if(!file_exists($jsonFolder = "{$dataFolder}json/")){
-			mkdir($jsonFolder, 0777, true);
-		}
 		foreach($this->geometryDatas as $geometryName => $geometryData){
-			file_put_contents("{$jsonFolder}{$geometryName}.json", $geometryData);
+			file_put_contents("{$this->getDataFolder()}json/{$geometryName}.json", $geometryData);
 		}
 	}
 
@@ -107,14 +117,34 @@ class GeometryAPI extends PluginBase implements CommandExecutor{
 				$page = $max;
 			}
 		}
-		$sender->sendMessage($this->language->translate('commands.geometry.head', [
+		$sender->sendMessage($this->language->translate("commands.geometry.head", [
 			(string) ($page + 1),
 			(string) $max,
 		]));
 		for($i = $page * 5, $count = count($list), $loopMax = ($page + 1) * 5; $i < $count && $i < $loopMax; $i++){
-			$sender->sendMessage($this->language->translate('commands.geometry.item', [$list[$i]]));
+			$sender->sendMessage($this->language->translate("commands.geometry.item", [$list[$i]]));
 		}
 		return true;
+	}
+
+	/**
+	 * @Override for multilingual support of the config file
+	 *
+	 * @return bool
+	 */
+	public function saveDefaultConfig() : bool{
+		$resource = $this->getResource("lang/{$this->getServer()->getLanguage()->getLang()}/config.yml");
+		if($resource === null){
+			$resource = $this->getResource("lang/" . PluginLang::FALLBACK_LANGUAGE . "/config.yml");
+		}
+
+		if(!file_exists($configFile = $this->getDataFolder() . "config.yml")){
+			$ret = stream_copy_to_stream($resource, $fp = fopen($configFile, "wb")) > 0;
+			fclose($fp);
+			fclose($resource);
+			return $ret;
+		}
+		return false;
 	}
 
 	/**  @return string[] */
@@ -155,17 +185,5 @@ class GeometryAPI extends PluginBase implements CommandExecutor{
 	 */
 	public function getLanguage() : PluginLang{
 		return $this->language;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getSourceFolder() : string{
-		$pharPath = \Phar::running();
-		if(empty($pharPath)){
-			return dirname(__FILE__, 4) . DIRECTORY_SEPARATOR;
-		}else{
-			return $pharPath . DIRECTORY_SEPARATOR;
-		}
 	}
 }
