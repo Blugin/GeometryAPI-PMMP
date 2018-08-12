@@ -1,5 +1,5 @@
 # <img src="./assets/icon/index.svg" height="50" width="50"> GeometryAPI  
-__A plugin for [PMMP](https://pmmp.io) :: Load the chunk you want all the time!__  
+__A plugin for [PMMP](https://pmmp.io) :: skin geometry data api__  
 
 [![license](https://img.shields.io/github/license/PresentKim/GeometryAPI-PMMP.svg?label=License)](./LICENSE)
 [![release](https://img.shields.io/github/release/PresentKim/GeometryAPI-PMMP.svg?label=Release)](../../releases/latest)
