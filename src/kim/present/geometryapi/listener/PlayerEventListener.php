@@ -27,6 +27,7 @@ declare(strict_types=1);
 namespace kim\present\geometryapi\listener;
 
 use kim\present\geometryapi\GeometryAPI;
+use pocketmine\entity\Skin;
 use pocketmine\event\Listener;
 use pocketmine\event\player\{
 	PlayerChangeSkinEvent, PlayerJoinEvent
@@ -42,19 +43,31 @@ class PlayerEventListener implements Listener{
 
 	/** @param PlayerChangeSkinEvent $event */
 	public function onPlayerChangeSkinEvent(PlayerChangeSkinEvent $event) : void{
-		$skin = $event->getNewSkin();
-		$geometryData = $skin->getGeometryData();
-		if(!empty($geometryData)){
-			$this->owner->readGeometryData($geometryData);
-		}
+		$player = $event->getPlayer();
+		$event->setNewSkin($this->getPureGeometryData($player->getSkin()));
 	}
 
 	/** @param PlayerJoinEvent $event */
 	public function onPlayerJoinEvent(PlayerJoinEvent $event) : void{
-		$skin = $event->getPlayer()->getSkin();
+		$player = $event->getPlayer();
+		$player->setSkin($this->getPureGeometryData($player->getSkin()));
+	}
+
+	/**
+	 * @param Skin $skin
+	 *
+	 * @return Skin
+	 */
+	private function getPureGeometryData(Skin $skin) : Skin{
 		$geometryData = $skin->getGeometryData();
 		if(!empty($geometryData)){
 			$this->owner->readGeometryData($geometryData);
+
+			$geometryName = $skin->getGeometryName();
+			$geometryData = $this->owner->getGeometryData($geometryName);
+			return new Skin($skin->getSkinId(), $skin->getSkinData(), $skin->getCapeData(), $geometryName, $geometryData);
+		}else{
+			return $skin;
 		}
 	}
 }
