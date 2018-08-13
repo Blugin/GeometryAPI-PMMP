@@ -65,7 +65,7 @@ class PlayerEventListener implements Listener{
 
 			$geometryName = $skin->getGeometryName();
 			$geometryData = $this->owner->getGeometryData($geometryName);
-			return new Skin($skin->getSkinId(), $skin->getSkinData(), $skin->getCapeData(), $geometryName, $geometryData);
+			return $geometryData === null ? $skin : new Skin($skin->getSkinId(), $skin->getSkinData(), $skin->getCapeData(), $geometryName, $geometryData);
 		}else{
 			return $skin;
 		}
