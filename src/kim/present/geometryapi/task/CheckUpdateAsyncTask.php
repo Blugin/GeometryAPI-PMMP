@@ -36,7 +36,7 @@ class CheckUpdateAsyncTask extends AsyncTask{
 	public const CACHE_FILE_NAME = "f";
 	public const CACHE_DOWNLOAD_URL = "d";
 
-	private const RELEASE_URL = "https://api.github.com/repos/PresentKim/GeometryAPI-PMMP/releases/latest";
+	private const RELEASE_URL = "https://api.github.com/repos/Blugin/GeometryAPI-PMMP/releases/latest";
 
 	/** @var string|null Latest version of plugin */
 	private $latestVersion = null;
