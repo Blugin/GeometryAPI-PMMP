@@ -34,10 +34,10 @@ use pocketmine\event\player\{
 
 class PlayerEventListener implements Listener{
 	/** @var GeometryAPI */
-	private $owner = null;
+	private $plugin;
 
-	public function __construct(GeometryAPI $owner){
-		$this->owner = $owner;
+	public function __construct(GeometryAPI $plugin){
+		$this->plugin = $plugin;
 	}
 
 	/** @param PlayerChangeSkinEvent $event */
@@ -45,7 +45,7 @@ class PlayerEventListener implements Listener{
 		$skin = $event->getNewSkin();
 		$geometryData = $skin->getGeometryData();
 		if(!empty($geometryData)){
-			$this->owner->readGeometryData($geometryData);
+			$this->plugin->readGeometryData($geometryData);
 		}
 	}
 
@@ -54,7 +54,7 @@ class PlayerEventListener implements Listener{
 		$skin = $event->getPlayer()->getSkin();
 		$geometryData = $skin->getGeometryData();
 		if(!empty($geometryData)){
-			$this->owner->readGeometryData($geometryData);
+			$this->plugin->readGeometryData($geometryData);
 		}
 	}
 }
