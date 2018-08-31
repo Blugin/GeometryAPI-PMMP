@@ -30,14 +30,14 @@ use kim\present\geometryapi\lang\PluginLang;
 use kim\present\geometryapi\listener\PlayerEventListener;
 use kim\present\geometryapi\task\CheckUpdateAsyncTask;
 use pocketmine\command\{
-	Command, CommandExecutor, CommandSender, PluginCommand
+	Command, CommandSender, PluginCommand
 };
 use pocketmine\permission\{
 	Permission, PermissionManager
 };
 use pocketmine\plugin\PluginBase;
 
-class GeometryAPI extends PluginBase implements CommandExecutor{
+class GeometryAPI extends PluginBase{
 	/** @var GeometryAPI */
 	private static $instance = null;
 
