@@ -1,4 +1,4 @@
-# <img src="./assets/icon/index.svg" height="50" width="50"> GeometryAPI  
+# <img src="https://rawgit.com/PresentKim/SVG-files/master/plugin-icons/geometryapi.svg" height="50" width="50"> GeometryAPI  
 __A plugin for [PMMP](https://pmmp.io) :: skin geometry data api__  
 
 [![license](https://img.shields.io/github/license/Blugin/GeometryAPI-PMMP.svg?label=License)](./LICENSE)
