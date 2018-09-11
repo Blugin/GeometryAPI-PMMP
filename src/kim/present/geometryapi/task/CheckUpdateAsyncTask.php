@@ -111,10 +111,8 @@ class CheckUpdateAsyncTask extends AsyncTask{
 	/**
 	 * Actions to execute when completed (on main thread)
 	 * Implement this if you want to handle the data in your AsyncTask after it has been processed
-	 *
-	 * @param Server $server
 	 */
-	public function onCompletion(Server $server) : void{
+	public function onCompletion() : void{
 		$plugin = GeometryAPI::getInstance();
 		if($this->latestVersion === null){
 			$plugin->getLogger()->critical("Update check failed : Connection to release server failed");
