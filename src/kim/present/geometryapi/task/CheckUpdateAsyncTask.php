@@ -26,7 +26,6 @@ namespace kim\present\geometryapi\task;
 
 use kim\present\geometryapi\GeometryAPI;
 use pocketmine\scheduler\AsyncTask;
-use pocketmine\Server;
 
 class CheckUpdateAsyncTask extends AsyncTask{
 	public const CACHE_ENTITY_TAG = "e";
@@ -45,6 +44,9 @@ class CheckUpdateAsyncTask extends AsyncTask{
 	/** @var string Path of latest response cache file */
 	private $cachePath;
 
+	/**
+	 * CheckUpdateAsyncTask constructor.
+	 */
 	public function __construct(){
 		$this->cachePath = GeometryAPI::getInstance()->getDataFolder() . ".latestCache";
 	}

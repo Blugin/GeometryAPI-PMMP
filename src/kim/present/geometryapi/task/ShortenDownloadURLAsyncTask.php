@@ -26,7 +26,6 @@ namespace kim\present\geometryapi\task;
 
 use kim\present\geometryapi\GeometryAPI;
 use pocketmine\scheduler\AsyncTask;
-use pocketmine\Server;
 
 class ShortenDownloadURLAsyncTask extends AsyncTask{
 	private const URL = "https://git.io";

@@ -27,24 +27,22 @@ namespace kim\present\geometryapi;
 use kim\present\geometryapi\lang\PluginLang;
 use kim\present\geometryapi\listener\PlayerEventListener;
 use kim\present\geometryapi\task\CheckUpdateAsyncTask;
-use pocketmine\command\{
-	Command, CommandSender, PluginCommand
-};
-use pocketmine\permission\{
-	Permission, PermissionManager
-};
+use pocketmine\command;
+use pocketmine\permission\{Permission, PermissionManager};
 use pocketmine\plugin\PluginBase;
 
 class GeometryAPI extends PluginBase{
 	/** @var GeometryAPI */
 	private static $instance = null;
 
-	/** @return GeometryAPI */
+	/**
+	 * @return GeometryAPI
+	 */
 	public static function getInstance() : GeometryAPI{
 		return self::$instance;
 	}
 
-	/** @var PluginCommand */
+	/** @var command\PluginCommand */
 	private $command;
 
 	/** @var PluginLang */
@@ -70,8 +68,6 @@ class GeometryAPI extends PluginBase{
 		$this->saveResource("lang/language.list", false);
 
 		//Load config file
-		$this->saveDefaultConfig();
-		$this->reloadConfig();
 		$config = $this->getConfig();
 
 		//Check latest version
@@ -84,7 +80,7 @@ class GeometryAPI extends PluginBase{
 		$this->getLogger()->info($this->language->translate("language.selected", [$this->language->getName(), $this->language->getLang()]));
 
 		//Register main command
-		$this->command = new PluginCommand($config->getNested("command.name"), $this);
+		$this->command = new command\PluginCommand($config->getNested("command.name"), $this);
 		$this->command->setPermission("startkit.cmd");
 		$this->command->setAliases($config->getNested("command.aliases"));
 		$this->command->setUsage($this->language->translate("commands.startkit.usage"));
@@ -124,14 +120,14 @@ class GeometryAPI extends PluginBase{
 	}
 
 	/**
-	 * @param CommandSender $sender
-	 * @param Command       $command
-	 * @param string        $label
-	 * @param string[]      $args
+	 * @param command\CommandSender $sender
+	 * @param command\Command       $command
+	 * @param string                $label
+	 * @param string[]              $args
 	 *
 	 * @return bool
 	 */
-	public function onCommand(CommandSender $sender, Command $command, string $label, array $args) : bool{
+	public function onCommand(command\CommandSender $sender, command\Command $command, string $label, array $args) : bool{
 		$list = array_keys($this->getGeometryDatas());
 		$max = ceil(count($list) / 5);
 		$page = 0;
@@ -173,7 +169,16 @@ class GeometryAPI extends PluginBase{
 		return false;
 	}
 
-	/**  @return string[] */
+	/**
+	 * @return PluginLang
+	 */
+	public function getLanguage() : PluginLang{
+		return $this->language;
+	}
+
+	/**
+	 * @return string[]
+	 */
 	public function getGeometryDatas() : array{
 		return $this->geometryDatas;
 	}
@@ -206,12 +211,5 @@ class GeometryAPI extends PluginBase{
 	 */
 	public function getGeometryData(string $geometryName) : ?string{
 		return $this->geometryDatas[$geometryName] ?? null;
-	}
-
-	/**
-	 * @return PluginLang
-	 */
-	public function getLanguage() : PluginLang{
-		return $this->language;
 	}
 }

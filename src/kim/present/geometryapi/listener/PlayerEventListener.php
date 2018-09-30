@@ -26,20 +26,25 @@ namespace kim\present\geometryapi\listener;
 
 use kim\present\geometryapi\GeometryAPI;
 use pocketmine\event\Listener;
-use pocketmine\event\player\{
-	PlayerChangeSkinEvent, PlayerJoinEvent
-};
+use pocketmine\event\player as event;
 
 class PlayerEventListener implements Listener{
 	/** @var GeometryAPI */
 	private $plugin;
 
+	/**
+	 * PlayerEventListener constructor.
+	 *
+	 * @param GeometryAPI $plugin
+	 */
 	public function __construct(GeometryAPI $plugin){
 		$this->plugin = $plugin;
 	}
 
-	/** @param PlayerChangeSkinEvent $event */
-	public function onPlayerChangeSkinEvent(PlayerChangeSkinEvent $event) : void{
+	/**
+	 * @param event\PlayerChangeSkinEvent $event
+	 */
+	public function onPlayerChangeSkinEvent(event\PlayerChangeSkinEvent $event) : void{
 		$skin = $event->getNewSkin();
 		$geometryData = $skin->getGeometryData();
 		if(!empty($geometryData)){
@@ -47,8 +52,10 @@ class PlayerEventListener implements Listener{
 		}
 	}
 
-	/** @param PlayerJoinEvent $event */
-	public function onPlayerJoinEvent(PlayerJoinEvent $event) : void{
+	/**
+	 * @param event\PlayerJoinEvent $event
+	 */
+	public function onPlayerJoinEvent(event\PlayerJoinEvent $event) : void{
 		$skin = $event->getPlayer()->getSkin();
 		$geometryData = $skin->getGeometryData();
 		if(!empty($geometryData)){
